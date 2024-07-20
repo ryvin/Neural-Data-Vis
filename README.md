@@ -9,6 +9,7 @@ This tool provides a graphical user interface for visualizing neural data record
 - Adjust the time window and duration of the displayed data
 - Real-time updates of the visualization as parameters are changed
 - Display voltage traces in millivolts (mV)
+- Configurable data source and parameters via config.ini file
 
 ## Prerequisites
 
@@ -29,21 +30,28 @@ Before you begin, ensure you have met the following requirements:
    pip install -r requirements.txt
    ```
 
-## Data Preparation
-
-1. Ensure you have a Neuropixel recording file (.bin) available.
-2. Note the path to this file, as you'll need to update it in the script.
-
 ## Configuration
 
-1. Open the `Neural_Data_Visualization.py` file in a text editor.
-2. Locate the following line in the `App` class initialization:
+1. Create a file named `config.ini` in the same directory as the script with the following content:
 
-   ```python
-   Path("C:/Datasets/CRCNS/spe-1/data/c45/c45_npx_raw-001.bin")
+   ```ini
+   [Data]
+   file_path = /path/to/your/neuropixel/data.bin
+   shape = 384,24301033
    ```
 
-3. Replace this path with the path to your Neuropixel recording file.
+   Replace `/path/to/your/neuropixel/data.bin` with the actual path to your Neuropixel recording file.
+
+2. Adjust the `shape` parameter to match your data:
+   - The first number is the total number of channels in your Neuropixel probe.
+   - The second number is the total number of time samples in your recording.
+
+   For example, for a 15-minute recording at 30 kHz sampling rate with 384 channels:
+   ```ini
+   shape = 384,27000000
+   ```
+
+   (27000000 = 15 minutes * 60 seconds * 30000 samples/second)
 
 ## Running the Application
 
@@ -65,10 +73,21 @@ Before you begin, ensure you have met the following requirements:
 4. Adjust the "Duration" field to change the time window of data displayed.
 5. Click "Update" or "Update Duration" to refresh the plot with new parameters.
 
+## Customization
+
+You can customize various aspects of the visualization by modifying the constants at the top of the `Neural_Data_Visualization.py` file:
+
+- `DEFAULT_WINDOW_SIZE`: Initial size of the application window
+- `DEFAULT_DURATION_SAMPLES`: Default number of samples to display
+- `DEFAULT_CHANNELS`: Default channels to load
+- `SAMPLING_RATE`: Sampling rate of the recording in Hz
+- `VOLTAGE_CONVERSION_FACTOR`: Factor to convert raw values to millivolts
+- `CHANNEL_OFFSET`: Vertical offset between channels in the plot
+
 ## Troubleshooting
 
 - If you encounter any errors related to missing packages, ensure you've installed all required dependencies using the `requirements.txt` file.
-- If the data doesn't load, double-check that the file path in the script matches the location of your .bin file.
+- If the data doesn't load, double-check that the file path and shape in `config.ini` match your actual data file.
 - For any other issues, check the console output for error messages which may provide more information about the problem.
 
 ## Contributing
@@ -85,4 +104,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ## Contact
 
-If you have any questions or feedback, please open an issue in the project repository.s
+If you have any questions or feedback, please open an issue in the project repository.
