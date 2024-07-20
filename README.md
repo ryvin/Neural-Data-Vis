@@ -24,10 +24,30 @@ Before you begin, ensure you have met the following requirements:
 
 2. Navigate to the directory containing the script in your terminal or command prompt.
 
-3. Install the required Python packages by running:
+3. Set up a virtual environment (recommended):
+   
+   On Windows:
+   ```
+   python -m venv venv
+   venv\Scripts\activate
+   ```
+   
+   On macOS and Linux:
+   ```
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+4. Install the required Python packages by running:
 
    ```
    pip install -r requirements.txt
+   ```
+
+5. When you're done working on the project, you can deactivate the virtual environment by running:
+   
+   ```
+   deactivate
    ```
 
 ## Configuration
@@ -57,13 +77,25 @@ Before you begin, ensure you have met the following requirements:
 
 1. Open a terminal or command prompt.
 2. Navigate to the directory containing the script.
-3. Run the script using Python:
+3. Activate the virtual environment if you haven't already:
+   
+   On Windows:
+   ```
+   venv\Scripts\activate
+   ```
+   
+   On macOS and Linux:
+   ```
+   source venv/bin/activate
+   ```
+
+4. Run the script using Python:
 
    ```
    python Neural_Data_Visualization.py
    ```
 
-4. The application window should appear.
+5. The application window should appear.
 
 ## Using the Application
 
@@ -86,7 +118,7 @@ You can customize various aspects of the visualization by modifying the constant
 
 ## Troubleshooting
 
-- If you encounter any errors related to missing packages, ensure you've installed all required dependencies using the `requirements.txt` file.
+- If you encounter any errors related to missing packages, ensure you've activated the virtual environment and installed all required dependencies using the `requirements.txt` file.
 - If the data doesn't load, double-check that the file path and shape in `config.ini` match your actual data file.
 - For any other issues, check the console output for error messages which may provide more information about the problem.
 
