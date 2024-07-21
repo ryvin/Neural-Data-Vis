@@ -19,8 +19,6 @@ Before you begin, ensure you have met the following requirements:
 - Python 3.7 or higher installed
 - pip (Python package installer)
 
-[... Previous sections of the README remain unchanged ...]
-
 ## Data Files
 
 This project uses data from the CRCNS.org spe-1 dataset, which contains simultaneous patch-clamp and dense CMOS probe extracellular recordings from the same cortical neuron in anesthetized rats. The following files are crucial for understanding and using the data:
