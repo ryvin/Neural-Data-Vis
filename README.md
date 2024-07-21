@@ -1,5 +1,5 @@
 # Neural Data Visualization Tool
-![Neural Data Visualization Tool](/images/Neural%20Data%20Visualization2.png)
+![Neural Data Visualization Tool](/images/Neural%20Data%20Visualization3.png)
 
 This tool provides a graphical user interface for visualizing neural data recorded from Neuropixel probes. It allows users to load specific channels of data, navigate through the recording in time, and visualize voltage traces for selected channels.
 
