@@ -1,4 +1,5 @@
 # Neural Data Visualization Tool
+![Neural Data Visualization Tool](/images/Neural%20Data%20Visualization2.png)
 
 This tool provides a graphical user interface for visualizing neural data recorded from Neuropixel probes. It allows users to load specific channels of data, navigate through the recording in time, and visualize voltage traces for selected channels.
 
@@ -17,6 +18,48 @@ Before you begin, ensure you have met the following requirements:
 
 - Python 3.7 or higher installed
 - pip (Python package installer)
+
+[... Previous sections of the README remain unchanged ...]
+
+## Data Files
+
+This project uses data from the CRCNS.org spe-1 dataset, which contains simultaneous patch-clamp and dense CMOS probe extracellular recordings from the same cortical neuron in anesthetized rats. The following files are crucial for understanding and using the data:
+
+1. `c45_expt_meta.csv`: This file contains metadata about the experiment, specifically the dimensions and data types of the Neuropixel and patch-clamp recordings. The content is:
+
+   ```
+   npx,patch
+   "[(384L, 24301033L), 'int16']","[40521060, 'float64']"
+   ```
+
+   This indicates that:
+   - The Neuropixel (npx) data has 384 channels and 24,301,033 samples, stored as 16-bit integers.
+   - The patch-clamp data has 40,521,060 samples, stored as 64-bit floats.
+
+2. `crcns_spe-1_data_description.pdf`: This document provides a comprehensive description of the dataset, including:
+   - Summary of the experiment
+   - Data organization
+   - File formats
+   - How to cite the dataset
+   - Methods used
+   - Detailed explanation of each file in the dataset
+
+### Key Points from the Data Description:
+
+- The dataset includes recordings from 43 neurons in the primary motor and somatosensory cortex of anesthetized rats.
+- Data is organized by cell, with each cell having its own directory (cxx, where xx is the cell number).
+- The Neuropixel data (`cxx_npx_raw.bin`) is stored as a 1D binary file that needs to be reshaped into a 2D array (384 channels x samples).
+- The conversion factor for Neuropixel data to microvolts is 2.34 μV per bit.
+- Patch-clamp data (`cxx_patch_ch1.bin`) is already in pA or mV, depending on the recording mode.
+- Additional files include synchronization channels, spike sample information, and summary data.
+
+## Data Preparation
+
+Before running the visualization tool, ensure you have:
+
+1. Downloaded the necessary data files from CRCNS.org (you may need to request access).
+2. Placed the `cxx_npx_raw.bin` file (where xx is the cell number you're interested in) in the directory specified in your `config.ini` file.
+3. Updated the `shape` parameter in `config.ini` to match the dimensions in `c45_expt_meta.csv` for the Neuropixel data.
 
 ## Installation
 
@@ -121,6 +164,11 @@ You can customize various aspects of the visualization by modifying the constant
 - If you encounter any errors related to missing packages, ensure you've activated the virtual environment and installed all required dependencies using the `requirements.txt` file.
 - If the data doesn't load, double-check that the file path and shape in `config.ini` match your actual data file.
 - For any other issues, check the console output for error messages which may provide more information about the problem.
+
+## Additional Resources
+
+For more detailed information about the dataset and example code for data analysis, visit the companion repository:
+https://github.com/kampff-lab/sc.io/tree/master/Paired%20Recordings
 
 ## Contributing
 
